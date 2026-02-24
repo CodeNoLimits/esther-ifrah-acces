@@ -1,0 +1,769 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Stratégie Réseaux Sociaux — Breslev by Esther Ifrah</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  :root { --gold:#D4AF37; --navy:#0a0e27; --navy2:#111530; --cream:#f5f0e8; --gray:#aaa; }
+  body { font-family: 'Georgia', serif; background: var(--navy); color: var(--cream); }
+  .container { max-width: 960px; margin: 0 auto; padding: 0 20px; }
+
+  /* NAV */
+  nav { background: var(--navy2); border-bottom: 1px solid rgba(212,175,55,0.3); padding: 14px 20px; display: flex; align-items: center; gap: 20px; flex-wrap: wrap; }
+  nav .logo { color: var(--gold); font-size: 1.1rem; font-weight: bold; }
+  nav a { color: var(--gray); font-size: 0.85rem; text-decoration: none; padding: 4px 12px; border-radius: 100px; border: 1px solid rgba(212,175,55,0.2); }
+  nav a:hover { background: rgba(212,175,55,0.1); color: var(--gold); }
+
+  /* HERO */
+  .hero { text-align: center; padding: 60px 20px 40px; }
+  .hero h1 { font-size: clamp(1.8rem, 4vw, 2.8rem); color: var(--gold); margin-bottom: 12px; }
+  .hero p { color: var(--gray); font-size: 1rem; max-width: 600px; margin: 0 auto; line-height: 1.7; }
+
+  /* SECTIONS */
+  section { padding: 50px 0; }
+  section + section { border-top: 1px solid rgba(255,255,255,0.06); }
+  .section-title { color: var(--gold); font-size: 1.5rem; margin-bottom: 8px; }
+  .section-sub { color: var(--gray); font-size: 0.9rem; margin-bottom: 32px; }
+
+  /* TIMELINE TABLE */
+  .timeline-table { width: 100%; border-collapse: collapse; margin-bottom: 32px; }
+  .timeline-table th { background: rgba(212,175,55,0.12); color: var(--gold); padding: 12px 16px; text-align: left; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1px; border-bottom: 2px solid rgba(212,175,55,0.3); }
+  .timeline-table td { padding: 12px 16px; border-bottom: 1px solid rgba(255,255,255,0.06); font-size: 0.88rem; vertical-align: top; }
+  .timeline-table tr:hover td { background: rgba(255,255,255,0.02); }
+  .badge { display: inline-block; padding: 3px 10px; border-radius: 100px; font-size: 0.75rem; font-weight: bold; }
+  .badge-ig { background: rgba(225,48,108,0.15); color: #e1306c; border: 1px solid rgba(225,48,108,0.3); }
+  .badge-tt { background: rgba(0,0,0,0.3); color: #fff; border: 1px solid rgba(255,255,255,0.2); }
+  .badge-fb { background: rgba(24,119,242,0.15); color: #1877f2; border: 1px solid rgba(24,119,242,0.3); }
+  .badge-yt { background: rgba(255,0,0,0.1); color: #ff4444; border: 1px solid rgba(255,0,0,0.2); }
+  .badge-all { background: rgba(212,175,55,0.15); color: var(--gold); border: 1px solid rgba(212,175,55,0.3); }
+
+  /* PROMPTS */
+  .prompts-grid { display: grid; gap: 16px; }
+  .prompt-card { background: rgba(255,255,255,0.04); border: 1px solid rgba(212,175,55,0.2); border-radius: 12px; padding: 20px; position: relative; }
+  .prompt-card:hover { border-color: rgba(212,175,55,0.5); }
+  .prompt-num { position: absolute; top: 12px; right: 14px; color: rgba(212,175,55,0.4); font-size: 0.8rem; }
+  .prompt-platform { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 10px; }
+  .prompt-title { color: var(--gold); font-size: 1rem; margin-bottom: 8px; }
+  .prompt-text { background: rgba(0,0,0,0.3); border: 1px solid rgba(255,255,255,0.08); border-radius: 8px; padding: 14px; font-family: monospace; font-size: 0.82rem; line-height: 1.6; color: #d0ccc0; white-space: pre-wrap; word-break: break-word; }
+  .copy-btn { margin-top: 10px; background: rgba(212,175,55,0.15); border: 1px solid rgba(212,175,55,0.3); color: var(--gold); padding: 6px 14px; border-radius: 6px; font-size: 0.8rem; cursor: pointer; }
+  .copy-btn:hover { background: rgba(212,175,55,0.25); }
+  .copy-btn.copied { background: rgba(0,200,100,0.15); color: #4caf50; border-color: #4caf50; }
+
+  /* FREQUENCY CARDS */
+  .freq-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; margin-bottom: 32px; }
+  .freq-card { background: rgba(255,255,255,0.04); border: 1px solid rgba(212,175,55,0.2); border-radius: 10px; padding: 20px; text-align: center; }
+  .freq-platform { font-size: 1.5rem; margin-bottom: 8px; }
+  .freq-name { color: var(--gold); font-size: 0.9rem; margin-bottom: 6px; }
+  .freq-number { font-size: 1.6rem; font-weight: bold; }
+  .freq-unit { color: var(--gray); font-size: 0.8rem; }
+
+  /* HASHTAGS */
+  .hashtags { display: flex; flex-wrap: wrap; gap: 8px; }
+  .ht { background: rgba(212,175,55,0.08); border: 1px solid rgba(212,175,55,0.2); color: var(--gold); padding: 4px 12px; border-radius: 100px; font-size: 0.82rem; font-family: monospace; cursor: pointer; }
+  .ht:hover { background: rgba(212,175,55,0.2); }
+
+  /* KPIs */
+  .kpi-table { width: 100%; border-collapse: collapse; }
+  .kpi-table th { background: rgba(212,175,55,0.1); color: var(--gold); padding: 10px 14px; font-size: 0.82rem; text-align: left; border-bottom: 2px solid rgba(212,175,55,0.25); }
+  .kpi-table td { padding: 10px 14px; border-bottom: 1px solid rgba(255,255,255,0.05); font-size: 0.85rem; color: var(--cream); }
+  .kpi-table td:first-child { color: var(--gold); font-weight: bold; }
+
+  footer { text-align: center; padding: 40px 20px; border-top: 1px solid rgba(255,255,255,0.08); color: var(--gray); font-size: 0.82rem; }
+
+  /* TABS */
+  .tabs { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 24px; }
+  .tab-btn { background: rgba(255,255,255,0.04); border: 1px solid rgba(212,175,55,0.2); color: var(--gray); padding: 8px 18px; border-radius: 100px; font-size: 0.85rem; cursor: pointer; }
+  .tab-btn.active { background: rgba(212,175,55,0.15); color: var(--gold); border-color: var(--gold); }
+  .tab-content { display: none; }
+  .tab-content.active { display: block; }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="logo">📚 Breslev by Esther Ifrah</div>
+  <a href="index.html">Accès complet</a>
+  <a href="proposition-esther-v4.html">Proposition V4</a>
+  <a href="https://breslev-books-preview.vercel.app" target="_blank">Site Live</a>
+</nav>
+
+<div class="hero">
+  <h1>Stratégie Réseaux Sociaux</h1>
+  <p>Feuille de route 6 mois + 30 prompts Gemini/ImageFX copier-coller pour créer du contenu professionnel sur Instagram, TikTok, Facebook et YouTube.</p>
+</div>
+
+<!-- SECTION 1: FRÉQUENCES -->
+<section>
+  <div class="container">
+    <h2 class="section-title">Fréquences de Publication</h2>
+    <p class="section-sub">Rythme recommandé pour une croissance organique solide</p>
+    <div class="freq-grid">
+      <div class="freq-card">
+        <div class="freq-platform">📸</div>
+        <div class="freq-name">Instagram @breslevbyesther</div>
+        <div class="freq-number">5x</div>
+        <div class="freq-unit">par semaine</div>
+      </div>
+      <div class="freq-card">
+        <div class="freq-platform">🎵</div>
+        <div class="freq-name">TikTok @estherifrah572</div>
+        <div class="freq-number">7x</div>
+        <div class="freq-unit">par semaine</div>
+      </div>
+      <div class="freq-card">
+        <div class="freq-platform">📘</div>
+        <div class="freq-name">Facebook Page</div>
+        <div class="freq-number">3x</div>
+        <div class="freq-unit">par semaine</div>
+      </div>
+      <div class="freq-card">
+        <div class="freq-platform">▶️</div>
+        <div class="freq-name">YouTube @BreslevEsther</div>
+        <div class="freq-number">1x</div>
+        <div class="freq-unit">par semaine</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 2: ROADMAP 6 MOIS -->
+<section>
+  <div class="container">
+    <h2 class="section-title">Roadmap 6 Mois</h2>
+    <p class="section-sub">Échéancier précis qui justifie le pricing ₪2,000/mois</p>
+    <table class="timeline-table">
+      <thead>
+        <tr>
+          <th>Période</th>
+          <th>Objectif</th>
+          <th>Actions</th>
+          <th>KPI cible</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong style="color:var(--gold)">Semaine 1–2</strong><br><small style="color:var(--gray)">Lancement</small></td>
+          <td>Présence établie</td>
+          <td>
+            • 1er post sur chaque plateforme<br>
+            • Bios optimisées<br>
+            • Stories de présentation<br>
+            • 5 Reels "intro" TikTok/IG
+          </td>
+          <td>50 abonnés IG<br>100 vues TikTok</td>
+        </tr>
+        <tr>
+          <td><strong style="color:var(--gold)">Semaine 3–4</strong><br><small style="color:var(--gray)">M1 fin</small></td>
+          <td>Contenu régulier</td>
+          <td>
+            • 10 posts IG/semaine<br>
+            • 7 TikToks/semaine<br>
+            • 3 posts Facebook<br>
+            • 1 vidéo YouTube<br>
+            • Hashtags stratégiques actifs
+          </td>
+          <td>200 abonnés total<br>500 vues/TikTok<br>3 premières ventes</td>
+        </tr>
+        <tr>
+          <td><strong style="color:var(--gold)">Mois 2</strong><br><small style="color:var(--gray)">Croissance</small></td>
+          <td>Audience engagée</td>
+          <td>
+            • Reels citations Rabbi Nachman<br>
+            • "Livre de la semaine"<br>
+            • Stories Behind-the-scenes<br>
+            • Pinned posts sur chaque plateforme<br>
+            • Réponse à TOUS les commentaires
+          </td>
+          <td>500 abonnés IG<br>1,000 abonnés TikTok<br>10 ventes/mois</td>
+        </tr>
+        <tr>
+          <td><strong style="color:var(--gold)">Mois 3</strong><br><small style="color:var(--gray)">Optimisation</small></td>
+          <td>Référencement + SEO</td>
+          <td>
+            • Analyser posts qui performent<br>
+            • Doubler ce qui marche<br>
+            • YouTube SEO "livres breslev français"<br>
+            • Collaboration possible communauté<br>
+            • 1ère campagne pub Facebook €50
+          </td>
+          <td>1,000 abonnés IG<br>3,000 TikTok<br>15-20 ventes/mois</td>
+        </tr>
+        <tr>
+          <td><strong style="color:var(--gold)">Mois 4</strong><br><small style="color:var(--gray)">Communauté</small></td>
+          <td>Fidélisation</td>
+          <td>
+            • Groupe WhatsApp lecteurs<br>
+            • Newsletter mensuelle<br>
+            • Témoignages clients à poster<br>
+            • Lives Instagram (Q&A livres)<br>
+            • Concours / Giveaway livre offert
+          </td>
+          <td>1,500 abonnés IG<br>5,000 TikTok<br>25 ventes/mois</td>
+        </tr>
+        <tr>
+          <td><strong style="color:var(--gold)">Mois 5</strong><br><small style="color:var(--gray)">Expansion</small></td>
+          <td>Nouveaux produits</td>
+          <td>
+            • Cours audio/vidéo en ligne<br>
+            • Contenu exclusif abonnés<br>
+            • Partenariats comunauté Breslev<br>
+            • Facebook Ads budget augmenté<br>
+            • YouTube Shorts viraux
+          </td>
+          <td>2,500 abonnés IG<br>8,000 TikTok<br>35 ventes/mois</td>
+        </tr>
+        <tr>
+          <td><strong style="color:var(--gold)">Mois 6</strong><br><small style="color:var(--gray)">Rentabilité</small></td>
+          <td>ROI confirmé</td>
+          <td>
+            • Revenue récurrent établi<br>
+            • Automatisation contenus<br>
+            • Ambassadeurs communauté<br>
+            • Bilan 6 mois + plan année 2<br>
+            • Upsells et bundles livres
+          </td>
+          <td>3,000 abonnés IG<br>10,000 TikTok<br>₪5,000–10,000/mois</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- SECTION 3: PROMPTS GEMINI/IMAGEFX -->
+<section>
+  <div class="container">
+    <h2 class="section-title">30+ Prompts Gemini / ImageFX</h2>
+    <p class="section-sub">Copier-coller directement dans Gemini (texte) ou ImageFX (images)</p>
+
+    <div class="tabs">
+      <button class="tab-btn active" onclick="showTab('ig')">📸 Instagram</button>
+      <button class="tab-btn" onclick="showTab('tt')">🎵 TikTok</button>
+      <button class="tab-btn" onclick="showTab('fb')">📘 Facebook</button>
+      <button class="tab-btn" onclick="showTab('yt')">▶️ YouTube</button>
+      <button class="tab-btn" onclick="showTab('img')">🎨 ImageFX</button>
+    </div>
+
+    <!-- INSTAGRAM -->
+    <div id="tab-ig" class="tab-content active">
+      <div class="prompts-grid">
+
+        <div class="prompt-card">
+          <div class="prompt-num">#IG-01</div>
+          <div class="prompt-platform"><span class="badge badge-ig">📸 Instagram Post</span></div>
+          <div class="prompt-title">Citation Rabbi Nachman — Format carousel</div>
+          <div class="prompt-text">Crée un post Instagram pour la librairie "Breslev by Esther Ifrah".
+Thème : citation de Rabbi Nachman de Breslev en français.
+Format : texte d'une citation puissante (max 2 phrases), puis une explication courte (3-4 lignes) qui donne envie de lire ses livres.
+Ton : spirituel, chaleureux, accessible aux Juifs francophones.
+CTA final : "Découvrez ses enseignements dans nos livres 📚 Lien en bio"
+Hashtags à inclure : #breslev #rabbinachman #judaisme #torah #spiritualite #nanachnachmanmeuman</div>
+          <button class="copy-btn" onclick="copyPrompt(this)">📋 Copier</button>
+        </div>
+
+        <div class="prompt-card">
+          <div class="prompt-num">#IG-02</div>
+          <div class="prompt-platform"><span class="badge badge-ig">📸 Instagram Reel</span></div>
+          <div class="prompt-title">Présentation d'un livre — Script Reel 30s</div>
+          <div class="prompt-text">Écris le script d'un Reel Instagram de 30 secondes pour présenter le livre "Likoutey Moharan" de Rabbi Nachman.
+Librairie : Breslev by Esther Ifrah.
+Structure :
+[0-5s] Accroche choc : une question ou affirmation sur la vie/foi
+[5-15s] Ce que contient ce livre en 3 points clés
+[15-25s] Pourquoi ce livre va changer ta vie
+[25-30s] CTA : "Commande sur breslev-books-preview.vercel.app"
+Ton : enthousiaste, authentique, pas trop commercial.
+Ajoute des indications de texte à l'écran entre crochets.</div>
+          <button class="copy-btn" onclick="copyPrompt(this)">📋 Copier</button>
+        </div>
+
+        <div class="prompt-card">
+          <div class="prompt-num">#IG-03</div>
+          <div class="prompt-platform"><span class="badge badge-ig">📸 Instagram Story</span></div>
+          <div class="prompt-title">Sondage "Quel livre vous correspond?"</div>
+          <div class="prompt-text">Crée le texte d'une Story Instagram interactive avec sondage pour la librairie Breslev by Esther Ifrah.
+Format : question engageante + 2 options de vote
+Idées de sondages :
+- "Tu es plutôt: A) Chercheur de sens B) Pratiquant au quotidien"
+- "Ton rapport aux livres de Rabbi Nachman: A) Débutant B) Passionné"
+- "Tu voudrais plutôt: A) Livre physique B) Version numérique"
+Texte d'intro accrocheur, émoji, CTA vers la boutique.
+Propose 3 sondages différents pour 3 stories cette semaine.</div>
+          <button class="copy-btn" onclick="copyPrompt(this)">📋 Copier</button>
+        </div>
+
+        <div class="prompt-card">
+          <div class="prompt-num">#IG-04</div>
+          <div class="prompt-platform"><span class="badge badge-ig">📸 Instagram Post</span></div>
+          <div class="prompt-title">Behind the scenes — Journée d'Esther</div>
+          <div class="prompt-text">Rédige un post Instagram authentique "dans les coulisses" pour Esther Ifrah, libraire spécialisée en livres Breslev.
+Comme si Esther parlait directement à sa communauté.
+Raconte sa passion pour les livres de Rabbi Nachman, pourquoi elle a créé cette librairie.
+Max 150 mots. Ton personnel, émouvant, sincère.
+Finir par une question pour engager la communauté.
+Utilise les emojis avec parcimonie. Inclure #breslevbyesther</div>
+          <button class="copy-btn" onclick="copyPrompt(this)">📋 Copier</button>
+        </div>
+
+        <div class="prompt-card">
+          <div class="prompt-num">#IG-05</div>
+          <div class="prompt-platform"><span class="badge badge-ig">📸 Carousel Instagram</span></div>
+          <div class="prompt-title">Top 5 livres pour débutants</div>
+          <div class="prompt-text">Crée le contenu d'un carousel Instagram "Les 5 livres de Rabbi Nachman incontournables pour débuter".
+7 slides au total:
+Slide 1: Titre accrocheur + visuel suggéré
+Slide 2-6: Un livre par slide avec titre, résumé 2 lignes, pour qui c'est
+Slide 7: CTA "Tous disponibles sur notre boutique en ligne"
+Inclure : Likoutey Moharan, Sippourey Maasiyot, Tikoun HaKlali, Azamra, La Vie du Breslever
+Ton : guide bienveillant, accessible, enthousiaste</div>
+          <button class="copy-btn" onclick="copyPrompt(this)">📋 Copier</button>
+        </div>
+
+        <div class="prompt-card">
+          <div class="prompt-num">#IG-06</div>
+          <div class="prompt-platform"><span class="badge badge-ig">📸 Instagram</span></div>
+          <div class="prompt-title">Promo hebdomadaire — "Livre de la semaine"</div>
+          <div class="prompt-text">Rédige un post Instagram pour la rubrique hebdomadaire "Livre de la semaine" de Breslev by Esther Ifrah.
+Livre cette semaine : [INSÉRER TITRE]
+Structure :
+📖 Titre mis en valeur
+✨ 3 raisons de lire ce livre (bullet points courts)
+💫 Une citation du livre
+🛒 "Commander → lien en bio"
+Prix : [INSÉRER PRIX] ₪
+Utilise un ton poétique et spirituel. Max 200 mots.</div>
+          <button class="copy-btn" onclick="copyPrompt(this)">📋 Copier</button>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- TIKTOK -->
+    <div id="tab-tt" class="tab-content">
+      <div class="prompts-grid">
+
+        <div class="prompt-card">
+          <div class="prompt-num">#TT-01</div>
+          <div class="prompt-platform"><span class="badge badge-tt">🎵 TikTok</span></div>
+          <div class="prompt-title">Script TikTok — "Ce que Rabbi Nachman dit sur..."</div>
+          <div class="prompt-text">Écris un script TikTok viral de 45-60 secondes intitulé "Ce que Rabbi Nachman dit sur [THÈME : argent / amour / tristesse / bonheur]".
+Format :
+[Accroche 0-3s] : Question ou fait surprenant
+[Corps 3-40s] : 3 enseignements clés de Rabbi Nachman sur ce thème, expliqués simplement
+[Conclusion 40-50s] : Comment appliquer ça aujourd'hui
+[CTA 50-60s] : "Ces enseignements sont dans ses livres — lien dans ma bio"
+Style : parlé naturel, enthousiaste, vulgarisation du judaïsme hassidique accessible à tous.
+Ajoute des indications de coupes/transitions entre crochets.</div>
+          <button class="copy-btn" onclick="copyPrompt(this)">📋 Copier</button>
+        </div>
+
+        <div class="prompt-card">
+          <div class="prompt-num">#TT-02</div>
+          <div class="prompt-platform"><span class="badge badge-tt">🎵 TikTok</span></div>
+          <div class="prompt-title">Unboxing d'un livre Breslev</div>
+          <div class="prompt-text">Script TikTok unboxing pour la librairie Breslev by Esther Ifrah.
+Durée : 30-45 secondes.
+Format : montrer un livre physique reçu par courrier / ouverture du colis
+[0-5s] "Regardez ce que j'ai reçu aujourd'hui..."
+[5-20s] Présenter le livre, sa couverture, quelques pages
+[20-35s] Lire une citation ou passage qui donne la chair de poule
+[35-45s] "Toi aussi tu peux l'avoir → lien dans ma bio"
+Son suggéré : musique douce et spirituelle
+Texte à afficher à l'écran : titre du livre + prix en ₪</div>
+          <button class="copy-btn" onclick="copyPrompt(this)">📋 Copier</button>
+        </div>
+
+        <div class="prompt-card">
+          <div class="prompt-num">#TT-03</div>
+          <div class="prompt-platform"><span class="badge badge-tt">🎵 TikTok</span></div>
+          <div class="prompt-title">POV : "Je lis Rabbi Nachman pour la 1ère fois"</div>
+          <div class="prompt-text">Écris un script TikTok émotionnel "POV : tu lis Rabbi Nachman pour la 1ère fois".
+Durée : 60 secondes.
+Style : relatable, émotionnel, comme parler à un ami.
+Raconter la découverte de l'enseignement de l'Azamra (trouver le bien en soi), comment ça change la perception de soi.
+Finir sur une note d'espoir et d'invitation à découvrir ses livres.
+Hashtags suggérés : #breslev #rabbinachman #spiritualite #judaisme #azamra #tikkunhaklali</div>
+          <button class="copy-btn" onclick="copyPrompt(this)">📋 Copier</button>
+        </div>
+
+        <div class="prompt-card">
+          <div class="prompt-num">#TT-04</div>
+          <div class="prompt-platform"><span class="badge badge-tt">🎵 TikTok</span></div>
+          <div class="prompt-title">Trend Hook — "Rabbi Nachman avait raison sur..."</div>
+          <div class="prompt-text">Crée 5 scripts TikTok courts (15-20 secondes chacun) sur le format tendance "Il avait raison sur tout".
+Titre : "Rabbi Nachman avait raison sur [THÈME]"
+Thèmes à couvrir :
+1. L'anxiété et la santé mentale
+2. L'importance de la joie (simha)
+3. Parler à D-ieu en langage de tous les jours
+4. La puissance de la musique
+5. Trouver le bien en chaque personne
+Pour chaque script : 1 enseignement central + lien avec la vie moderne + CTA boutique.
+Style : direct, percutant, accessible non-religieux bienvenu.</div>
+          <button class="copy-btn" onclick="copyPrompt(this)">📋 Copier</button>
+        </div>
+
+        <div class="prompt-card">
+          <div class="prompt-num">#TT-05</div>
+          <div class="prompt-platform"><span class="badge badge-tt">🎵 TikTok</span></div>
+          <div class="prompt-title">Répondre à un commentaire — duet/stitch</div>
+          <div class="prompt-text">Génère 3 scripts TikTok pour répondre à des questions fréquentes sur les livres Breslev, format "Réponse à @[commentaire]".
+Questions fréquentes à traiter :
+1. "C'est quoi le Tikoun HaKlali exactement ?"
+2. "Par quel livre commencer si on connaît pas Breslev ?"
+3. "Est-ce qu'il faut être religieux pour lire Rabbi Nachman ?"
+Pour chaque réponse : 45-60 secondes, ton pédagogique et chaleureux, finir par une recommandation de livre de la boutique.</div>
+          <button class="copy-btn" onclick="copyPrompt(this)">📋 Copier</button>
+        </div>
+
+        <div class="prompt-card">
+          <div class="prompt-num">#TT-06</div>
+          <div class="prompt-platform"><span class="badge badge-tt">🎵 TikTok</span></div>
+          <div class="prompt-title">Routine lecture Breslev — "Ma routine du matin"</div>
+          <div class="prompt-text">Script TikTok "lifestyle" sur la routine de lecture des livres de Rabbi Nachman.
+Durée : 45 secondes. Style : calme, inspirant, esthétique.
+[0-5s] Setup visuel : café, livre ouvert, fenêtre lumineuse le matin
+[5-30s] Décrire 3 minutes de lecture quotidienne de Likoutey Moharan et l'effet sur la journée
+[30-40s] Un enseignement court et applicable immédiatement
+[40-45s] "Le livre est dans notre boutique — lien bio"
+Texte à l'écran : "Ma routine Breslev du matin ☀️"</div>
+          <button class="copy-btn" onclick="copyPrompt(this)">📋 Copier</button>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- FACEBOOK -->
+    <div id="tab-fb" class="tab-content">
+      <div class="prompts-grid">
+
+        <div class="prompt-card">
+          <div class="prompt-num">#FB-01</div>
+          <div class="prompt-platform"><span class="badge badge-fb">📘 Facebook Post</span></div>
+          <div class="prompt-title">Post long — Histoire des Contes de Rabbi Nachman</div>
+          <div class="prompt-text">Rédige un post Facebook long (300-400 mots) pour la page "Breslev by Esther Ifrah" sur l'un des 13 contes mystiques de Rabbi Nachman.
+Conte : "Le Roi et l'Oiseau" (adapter selon le conte disponible dans notre catalogue)
+Structure :
+- Introduction : présenter le conte comme une perle cachée
+- Résumé du conte (100 mots)
+- Signification spirituelle profonde (100 mots)
+- Comment ce conte change la vision de la vie quotidienne
+- CTA : lien vers le livre "Sippourey Maasiyot" dans la boutique
+Ton : érudit mais accessible, communauté francophone Breslev. Pas trop religieux dans le vocabulaire.</div>
+          <button class="copy-btn" onclick="copyPrompt(this)">📋 Copier</button>
+        </div>
+
+        <div class="prompt-card">
+          <div class="prompt-num">#FB-02</div>
+          <div class="prompt-platform"><span class="badge badge-fb">📘 Facebook</span></div>
+          <div class="prompt-title">Annonce promotion — Semaine des livres</div>
+          <div class="prompt-text">Rédige une publication Facebook pour annoncer une promotion sur les livres Breslev.
+Librairie : Breslev by Esther Ifrah
+Promotion : Livraison gratuite en Israël pour toute commande de 2 livres ou plus (à adapter)
+Éléments à inclure :
+- Accroche enthousiaste
+- Détails de la promotion clairs
+- Les 3 livres les plus populaires avec leurs prix
+- Dates de la promotion
+- Lien vers la boutique : https://breslev-books-preview.vercel.app
+- Bouton "Voir l'offre" → lien boutique
+Ton : festif, généreux, communauté soudée.</div>
+          <button class="copy-btn" onclick="copyPrompt(this)">📋 Copier</button>
+        </div>
+
+        <div class="prompt-card">
+          <div class="prompt-num">#FB-03</div>
+          <div class="prompt-platform"><span class="badge badge-fb">📘 Facebook</span></div>
+          <div class="prompt-title">Témoignage client — format mise en valeur</div>
+          <div class="prompt-text">Rédige un template de post Facebook pour mettre en valeur un témoignage client de la librairie Breslev by Esther Ifrah.
+Format :
+"⭐⭐⭐⭐⭐ [Prénom du client] partage son expérience"
+[Citation du témoignage]
+[Réponse chaleureuse d'Esther]
+[CTA : "Vous aussi partagez votre expérience en commentaire"]
+Crée 3 versions de ce template pour 3 profils de clients différents :
+1. Mère de famille qui cherche des livres pour ses enfants
+2. Jeune adulte en recherche spirituelle
+3. Lecteur Breslev expérimenté qui relit les classiques</div>
+          <button class="copy-btn" onclick="copyPrompt(this)">📋 Copier</button>
+        </div>
+
+        <div class="prompt-card">
+          <div class="prompt-num">#FB-04</div>
+          <div class="prompt-platform"><span class="badge badge-fb">📘 Facebook Event</span></div>
+          <div class="prompt-title">Événement — Live lecture d'un conte</div>
+          <div class="prompt-text">Rédige la description d'un événement Facebook "Live : Lecture & Commentaire d'un Conte de Rabbi Nachman".
+Organisatrice : Esther Ifrah / Breslev by Esther Ifrah
+Durée suggérée : 45 minutes
+Format : lecture d'un conte + discussion communautaire + Q&A
+Description de l'événement (200 mots) qui donne envie de participer
+Points de programme à inclure
+"Apporte ton livre [titre] ou commande-le avant le live"
+Lien boutique inclus</div>
+          <button class="copy-btn" onclick="copyPrompt(this)">📋 Copier</button>
+        </div>
+
+        <div class="prompt-card">
+          <div class="prompt-num">#FB-05</div>
+          <div class="prompt-platform"><span class="badge badge-fb">📘 Facebook</span></div>
+          <div class="prompt-title">Post communautaire — Question de la semaine</div>
+          <div class="prompt-text">Crée 4 posts Facebook "Question de la semaine" pour la page Breslev by Esther Ifrah.
+Objectif : générer des commentaires et de l'engagement.
+Questions à proposer :
+1. "Quel enseignement de Rabbi Nachman a changé votre vie ?"
+2. "Comment intégrez-vous la joie de Breslev dans votre quotidien ?"
+3. "Quel est votre livre de Rabbi Nachman préféré et pourquoi ?"
+4. "Si vous deviez recommander UN livre Breslev à un ami, lequel choisissez-vous ?"
+Pour chaque question : intro courte + question + CTA "Partagez en commentaire 👇" + hashtag</div>
+          <button class="copy-btn" onclick="copyPrompt(this)">📋 Copier</button>
+        </div>
+
+        <div class="prompt-card">
+          <div class="prompt-num">#FB-06</div>
+          <div class="prompt-platform"><span class="badge badge-fb">📘 Facebook</span></div>
+          <div class="prompt-title">Calendrier éditorial — Parasha de la semaine</div>
+          <div class="prompt-text">Crée un template hebdomadaire pour relier la Parasha de la semaine à un enseignement de Rabbi Nachman et un livre de la boutique.
+Structure du post :
+📖 Parasha de la semaine : [NOM]
+✨ Lien avec l'enseignement de Rabbi Nachman : [2-3 lignes]
+📚 Livre recommandé cette semaine : [TITRE]
+💫 Citation du livre en rapport
+🛒 Commander → [lien boutique]
+Crée ce template pour les prochaines 4 parashot (Bereshit, Noach, Lech Lecha, Vayera) avec un contenu spécifique à chaque fois.</div>
+          <button class="copy-btn" onclick="copyPrompt(this)">📋 Copier</button>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- YOUTUBE -->
+    <div id="tab-yt" class="tab-content">
+      <div class="prompts-grid">
+
+        <div class="prompt-card">
+          <div class="prompt-num">#YT-01</div>
+          <div class="prompt-platform"><span class="badge badge-yt">▶️ YouTube</span></div>
+          <div class="prompt-title">Script vidéo "Introduction à Rabbi Nachman" — 10 minutes</div>
+          <div class="prompt-text">Écris le script complet d'une vidéo YouTube de 10 minutes : "Rabbi Nachman de Breslev : Qui était-il et pourquoi ses enseignements changent des vies ?"
+Canal : Breslev by Esther Ifrah (@BreslevEsther)
+Structure :
+[0:00-0:30] Intro accrocheuse + présentation du canal
+[0:30-2:00] Qui était Rabbi Nachman (biographie accessible)
+[2:00-5:00] Les 3 enseignements centraux les plus importants
+[5:00-8:00] Comment ses livres sont organisés + lequel commencer
+[8:00-9:30] Témoignages de lecteurs (inventer 2-3 exemples)
+[9:30-10:00] CTA boutique + abonnement canal
+Ton : accessible, chaleureux, pour tous publics (non-religieux inclus)
+Inclure timestamps pour la description YouTube.</div>
+          <button class="copy-btn" onclick="copyPrompt(this)">📋 Copier</button>
+        </div>
+
+        <div class="prompt-card">
+          <div class="prompt-num">#YT-02</div>
+          <div class="prompt-platform"><span class="badge badge-yt">▶️ YouTube</span></div>
+          <div class="prompt-title">Titre + Description SEO optimisée</div>
+          <div class="prompt-text">Génère 5 titres YouTube + descriptions SEO optimisées pour la chaîne Breslev by Esther Ifrah (@BreslevEsther).
+Mots-clés cibles : "livres breslev français", "rabbi nachman français", "spiritualité juive", "breslev débutant", "tikoun haklali"
+Pour chaque vidéo proposée :
+- Titre SEO (max 60 caractères, inclure mot-clé principal)
+- Description (150 mots) avec mots-clés naturels + lien boutique
+- 10 tags YouTube
+- Thumbnail description (ce qu'on verrait sur l'image)
+Thèmes des 5 vidéos : intro Rabbi Nachman, Tikoun HaKlali guide, Azamra pratique, Contes mystiques, Joie et dépression</div>
+          <button class="copy-btn" onclick="copyPrompt(this)">📋 Copier</button>
+        </div>
+
+        <div class="prompt-card">
+          <div class="prompt-num">#YT-03</div>
+          <div class="prompt-platform"><span class="badge badge-yt">▶️ YouTube Shorts</span></div>
+          <div class="prompt-title">3 YouTube Shorts — "1 minute, 1 enseignement"</div>
+          <div class="prompt-text">Écris 3 scripts YouTube Shorts (60 secondes chacun) pour Breslev by Esther Ifrah.
+Format : "1 minute avec Rabbi Nachman — [thème]"
+Short 1 : L'Azamra — trouver le bien en soi
+Short 2 : Le Tikoun HaKlali — les 10 psaumes de guérison
+Short 3 : Na Nach — le mantra de joie ultime
+Pour chaque Short :
+[0-5s] Texte d'accroche à l'écran, musique upbeat douce
+[5-45s] Enseignement en 3 points simples, parlé naturellement
+[45-60s] "Ce livre est dans notre boutique → lien bio"
+Style : vertical 9:16, sous-titres inclus, énergie positive</div>
+          <button class="copy-btn" onclick="copyPrompt(this)">📋 Copier</button>
+        </div>
+
+        <div class="prompt-card">
+          <div class="prompt-num">#YT-04</div>
+          <div class="prompt-platform"><span class="badge badge-yt">▶️ YouTube</span></div>
+          <div class="prompt-title">Review approfondie d'un livre</div>
+          <div class="prompt-text">Script d'une vidéo YouTube "review" approfondie de 15 minutes pour Likoutey Moharan Tome 1.
+Canal : Breslev by Esther Ifrah
+Structure :
+[0:00-1:00] Présentation du livre + pourquoi ce livre est unique
+[1:00-4:00] L'auteur Rabbi Nachman et contexte historique
+[4:00-10:00] Les 3 Torot les plus importantes du livre (résumé accessible)
+[10:00-13:00] À qui est-ce pour ? Niveau de difficulté ? Comment le lire ?
+[13:00-15:00] Conclusion + lien boutique + suggestion du prochain livre
+Inclure : moments où montrer le livre à la caméra, passages à lire à voix haute, émotions à transmettre</div>
+          <button class="copy-btn" onclick="copyPrompt(this)">📋 Copier</button>
+        </div>
+
+        <div class="prompt-card">
+          <div class="prompt-num">#YT-05</div>
+          <div class="prompt-platform"><span class="badge badge-yt">▶️ YouTube</span></div>
+          <div class="prompt-title">Playlist + communiqué de lancement de canal</div>
+          <div class="prompt-text">Crée le plan de lancement du canal YouTube @BreslevEsther pour les 3 premiers mois.
+Détailler :
+Semaine 1 : Vidéo de présentation du canal + qui est Esther (tourner cette semaine)
+Mois 1 : 4 vidéos piliers (intro Rabbi Nachman, Tikoun HaKlali, Azamra, Contes)
+Mois 2 : 4 vidéos reviews de livres (un livre par semaine)
+Mois 3 : Lives + Q&A + collaboration avec d'autres créateurs Breslev
+Pour chaque vidéo : titre, durée suggérée, description courte, mots-clés SEO.
+Inclure : stratégie de playlist, noms des playlists à créer, bannière canal à concevoir.</div>
+          <button class="copy-btn" onclick="copyPrompt(this)">📋 Copier</button>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- IMAGEFX -->
+    <div id="tab-img" class="tab-content">
+      <div class="prompts-grid">
+
+        <div class="prompt-card">
+          <div class="prompt-num">#IMG-01</div>
+          <div class="prompt-platform"><span class="badge badge-all">🎨 ImageFX / Gemini Imagen</span></div>
+          <div class="prompt-title">Visuel citation Instagram — Fond doré mystique</div>
+          <div class="prompt-text">A luxurious dark navy blue background with golden bokeh light effects. Centered Hebrew letters "נ נח נחמ נחמן מאומן" in elegant gold calligraphy. Below it, French text "Na Nach Nachma Nachman MeUman" in smaller serif font. Subtle golden geometric patterns in the corners. Mystical, spiritual atmosphere. Instagram square format 1:1. No people. Ultra high quality, 4K.</div>
+          <button class="copy-btn" onclick="copyPrompt(this)">📋 Copier</button>
+        </div>
+
+        <div class="prompt-card">
+          <div class="prompt-num">#IMG-02</div>
+          <div class="prompt-platform"><span class="badge badge-all">🎨 ImageFX</span></div>
+          <div class="prompt-title">Cover de livre ouvert — Esthétique Breslev</div>
+          <div class="prompt-text">An open religious book with golden pages, glowing with soft warm light. The book is placed on a wooden table with a warm candle nearby. The pages show Hebrew text that glows golden. Surrounding: small dried flowers, a cup of tea. Cozy, spiritual atmosphere. Top-down flat lay photography style. Warm tones: cream, gold, dark navy. No text overlay. 4:5 ratio for Instagram.</div>
+          <button class="copy-btn" onclick="copyPrompt(this)">📋 Copier</button>
+        </div>
+
+        <div class="prompt-card">
+          <div class="prompt-num">#IMG-03</div>
+          <div class="prompt-platform"><span class="badge badge-all">🎨 ImageFX</span></div>
+          <div class="prompt-title">Thumbnail YouTube — Rabbi Nachman portrait illustré</div>
+          <div class="prompt-text">A painterly illustration of a wise elderly Hasidic rabbi with a warm smile, white beard, traditional black hat. Soft golden light emanating from behind. Navy blue background with floating Hebrew letters and golden stars. Style: digital oil painting, warm and inviting. No realistic photo — illustrated style only. Horizontal 16:9 format. Space on the right side for title text overlay. Rich colors, spiritual atmosphere.</div>
+          <button class="copy-btn" onclick="copyPrompt(this)">📋 Copier</button>
+        </div>
+
+        <div class="prompt-card">
+          <div class="prompt-num">#IMG-04</div>
+          <div class="prompt-platform"><span class="badge badge-all">🎨 ImageFX</span></div>
+          <div class="prompt-title">Bannière Facebook — Collection livres Breslev</div>
+          <div class="prompt-text">A wide banner (820x312px aspect ratio) showing a collection of beautiful hardcover books with navy blue and gold covers, arranged artistically on a dark navy surface. Soft golden ambient lighting. Title text area on the left: "Breslev by Esther Ifrah" in gold serif font. Subtitle: "Librairie des livres de Rabbi Nachman". Stars of David motifs subtly integrated. Luxury bookstore aesthetic. No people. High quality photography style.</div>
+          <button class="copy-btn" onclick="copyPrompt(this)">📋 Copier</button>
+        </div>
+
+        <div class="prompt-card">
+          <div class="prompt-num">#IMG-05</div>
+          <div class="prompt-platform"><span class="badge badge-all">🎨 ImageFX</span></div>
+          <div class="prompt-title">Story Instagram — Fond animé spirituel</div>
+          <div class="prompt-text">A vertical 9:16 background for Instagram Stories. Deep navy blue gradient from top to bottom. Scattered tiny golden stars creating a constellation pattern. In the center, a large elegant golden menorah silhouette, soft glow. Bottom third: cream colored area with subtle texture for text overlay. Overall feeling: sacred, peaceful, spiritual, suitable for Jewish spiritual content. No text. Photorealistic lighting effects. 1080x1920px style.</div>
+          <button class="copy-btn" onclick="copyPrompt(this)">📋 Copier</button>
+        </div>
+
+        <div class="prompt-card">
+          <div class="prompt-num">#IMG-06</div>
+          <div class="prompt-platform"><span class="badge badge-all">🎨 ImageFX</span></div>
+          <div class="prompt-title">Post citation — Fond texturé or et marine</div>
+          <div class="prompt-text">Elegant quote card background. Dark navy blue textured background resembling aged parchment with subtle gold leaf patterns. Central cream rectangle with decorative gold border. The cream area is blank (for text overlay). Corners decorated with small golden Star of David motifs. Top center: small book icon in gold. Bottom center: "Breslev by Esther Ifrah" watermark in small gold serif. Square 1:1 ratio. Print quality, 300dpi style rendering.</div>
+          <button class="copy-btn" onclick="copyPrompt(this)">📋 Copier</button>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- HASHTAGS STRATÉGIQUES -->
+<section style="background:var(--navy2);">
+  <div class="container">
+    <h2 class="section-title">Hashtags Stratégiques</h2>
+    <p class="section-sub">Cliquer pour copier • Utiliser 10-15 hashtags par post Instagram</p>
+    <div class="hashtags">
+      <span class="ht" onclick="copyText(this)">#breslev</span>
+      <span class="ht" onclick="copyText(this)">#rabbinachman</span>
+      <span class="ht" onclick="copyText(this)">#hassidique</span>
+      <span class="ht" onclick="copyText(this)">#judaisme</span>
+      <span class="ht" onclick="copyText(this)">#torah</span>
+      <span class="ht" onclick="copyText(this)">#spiritualite</span>
+      <span class="ht" onclick="copyText(this)">#nanachnachmanmeuman</span>
+      <span class="ht" onclick="copyText(this)">#breslov</span>
+      <span class="ht" onclick="copyText(this)">#jewishbooks</span>
+      <span class="ht" onclick="copyText(this)">#livresjuifs</span>
+      <span class="ht" onclick="copyText(this)">#hebrewbooks</span>
+      <span class="ht" onclick="copyText(this)">#tikounhaklali</span>
+      <span class="ht" onclick="copyText(this)">#azamra</span>
+      <span class="ht" onclick="copyText(this)">#simha</span>
+      <span class="ht" onclick="copyText(this)">#judaismefr</span>
+      <span class="ht" onclick="copyText(this)">#kabbalah</span>
+      <span class="ht" onclick="copyText(this)">#breslevbyesther</span>
+      <span class="ht" onclick="copyText(this)">#livresbreslev</span>
+      <span class="ht" onclick="copyText(this)">#librairieholiday</span>
+      <span class="ht" onclick="copyText(this)">#jewishfrench</span>
+    </div>
+  </div>
+</section>
+
+<!-- KPIs OBJECTIFS -->
+<section>
+  <div class="container">
+    <h2 class="section-title">KPIs & Objectifs Mensuels</h2>
+    <p class="section-sub">Métriques pour valider le ROI de la maintenance ₪2,000/mois</p>
+    <table class="kpi-table">
+      <thead>
+        <tr><th>Mois</th><th>Instagram</th><th>TikTok</th><th>Facebook</th><th>YouTube</th><th>Ventes</th><th>CA estimé</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>M1</td><td>200 abonnés</td><td>500 vues/vid</td><td>100 likes</td><td>50 abonnés</td><td>3–5 ventes</td><td>₪600–1,000</td></tr>
+        <tr><td>M2</td><td>500 abonnés</td><td>1,000 suiveurs</td><td>200 likes</td><td>100 abonnés</td><td>10–15 ventes</td><td>₪1,500–2,000</td></tr>
+        <tr><td>M3</td><td>1,000 abonnés</td><td>3,000 suiveurs</td><td>500 likes</td><td>300 abonnés</td><td>15–20 ventes</td><td>₪2,500–3,500</td></tr>
+        <tr><td>M4</td><td>1,500 abonnés</td><td>5,000 suiveurs</td><td>800 likes</td><td>500 abonnés</td><td>25–30 ventes</td><td>₪3,500–5,000</td></tr>
+        <tr><td>M5</td><td>2,500 abonnés</td><td>8,000 suiveurs</td><td>1,200 likes</td><td>800 abonnés</td><td>35–40 ventes</td><td>₪5,000–7,000</td></tr>
+        <tr><td>M6</td><td>3,000+ abonnés</td><td>10,000+ suiveurs</td><td>1,500+ likes</td><td>1,000+ abonnés</td><td>40–50 ventes</td><td>₪6,000–10,000</td></tr>
+      </tbody>
+    </table>
+    <p style="color:var(--gray); font-size:0.82rem; text-align:center;">* Panier moyen estimé ₪150–200 (livre physique + numérique)</p>
+  </div>
+</section>
+
+<footer>
+  <p>Stratégie créée par <strong style="color:var(--gold)">DreamNova AI</strong> — David Amor, Jérusalem 2026</p>
+  <p style="margin-top:8px;">+972 58-477-0877 | dreamnovaultimate@gmail.com</p>
+  <p style="margin-top:12px; color:#333;">Na Nach Nachma Nachman MeUman</p>
+</footer>
+
+<script>
+function showTab(name) {
+  document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('tab-' + name).classList.add('active');
+  event.target.classList.add('active');
+}
+function copyPrompt(btn) {
+  const text = btn.previousElementSibling.innerText;
+  navigator.clipboard.writeText(text).then(() => {
+    btn.textContent = '✅ Copié !';
+    btn.classList.add('copied');
+    setTimeout(() => { btn.textContent = '📋 Copier'; btn.classList.remove('copied'); }, 2000);
+  });
+}
+function copyText(el) {
+  navigator.clipboard.writeText(el.textContent).then(() => {
+    const orig = el.style.background;
+    el.style.background = 'rgba(0,200,100,0.2)';
+    el.style.color = '#4caf50';
+    setTimeout(() => { el.style.background = ''; el.style.color = ''; }, 1000);
+  });
+}
+</script>
+</body>
+</html>
