@@ -1,327 +1,398 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="fr" dir="ltr">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Proposition DreamNova AI — Breslev by Esther Ifrah</title>
+<title>Package Digital Premium — Breslev by Esther Ifrah</title>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
-  * { box-sizing: border-box; margin: 0; padding: 0; }
-  :root {
-    --gold: #D4AF37;
-    --gold-light: #F0C940;
-    --navy: #0a0e27;
-    --navy2: #111530;
-    --cream: #f5f0e8;
-    --gray: #aaa;
-  }
-  body { font-family: 'Georgia', serif; background: var(--navy); color: var(--cream); }
-
-  /* HERO */
-  .hero { text-align: center; padding: 80px 20px 60px; background: linear-gradient(180deg, #070a1c 0%, var(--navy) 100%); border-bottom: 1px solid rgba(212,175,55,0.3); }
-  .badge { display: inline-block; background: rgba(212,175,55,0.15); border: 1px solid var(--gold); color: var(--gold); padding: 6px 18px; border-radius: 100px; font-size: 0.8rem; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 24px; }
-  .hero h1 { font-size: clamp(2rem, 5vw, 3.5rem); color: var(--gold); line-height: 1.2; margin-bottom: 16px; }
-  .hero p { color: var(--gray); font-size: 1.1rem; max-width: 600px; margin: 0 auto 32px; line-height: 1.7; }
-  .divider { width: 60px; height: 2px; background: var(--gold); margin: 24px auto; }
-
-  /* CONTAINER */
-  .container { max-width: 960px; margin: 0 auto; padding: 0 20px; }
-
-  /* WHAT WAS BUILT */
-  .section { padding: 60px 20px; }
-  .section-title { text-align: center; color: var(--gold); font-size: 1.6rem; margin-bottom: 8px; }
-  .section-sub { text-align: center; color: var(--gray); font-size: 0.95rem; margin-bottom: 40px; }
-
-  .deliverables { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 20px; max-width: 960px; margin: 0 auto; }
-  .deliv-card { background: rgba(255,255,255,0.04); border: 1px solid rgba(212,175,55,0.25); border-radius: 12px; padding: 24px; }
-  .deliv-icon { font-size: 2rem; margin-bottom: 12px; }
-  .deliv-card h3 { color: var(--gold); font-size: 1rem; margin-bottom: 8px; }
-  .deliv-card p { color: var(--gray); font-size: 0.88rem; line-height: 1.6; }
-  .deliv-card ul { color: var(--gray); font-size: 0.85rem; line-height: 1.8; padding-left: 16px; }
-
-  /* PRICING */
-  .pricing-section { background: var(--navy2); padding: 80px 20px; }
-  .pricing-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; max-width: 760px; margin: 0 auto; }
-  @media(max-width: 600px){ .pricing-grid { grid-template-columns: 1fr; } }
-
-  .price-card { background: rgba(255,255,255,0.04); border: 1px solid rgba(212,175,55,0.3); border-radius: 16px; padding: 36px 28px; text-align: center; position: relative; }
-  .price-card.featured { background: rgba(212,175,55,0.08); border-color: var(--gold); border-width: 2px; }
-  .price-card .tag { position: absolute; top: -14px; left: 50%; transform: translateX(-50%); background: var(--gold); color: var(--navy); padding: 4px 16px; border-radius: 100px; font-size: 0.75rem; font-weight: bold; white-space: nowrap; }
-  .price-label { color: var(--gray); font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 12px; }
-  .price-amount { font-size: 3rem; color: var(--gold); font-weight: bold; line-height: 1; }
-  .price-currency { font-size: 1.5rem; vertical-align: top; margin-top: 8px; display: inline-block; }
-  .price-period { color: var(--gray); font-size: 0.9rem; margin: 8px 0 20px; }
-  .price-includes { text-align: left; }
-  .price-includes li { color: var(--cream); font-size: 0.88rem; line-height: 1.9; list-style: none; padding-left: 0; }
-  .price-includes li::before { content: "✓ "; color: var(--gold); font-weight: bold; }
-  .price-total { margin-top: 20px; padding-top: 16px; border-top: 1px solid rgba(212,175,55,0.2); color: var(--gray); font-size: 0.82rem; }
-  .price-total strong { color: var(--gold); }
-
-  /* ROI */
-  .roi-section { padding: 60px 20px; text-align: center; }
-  .roi-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; max-width: 720px; margin: 40px auto 0; }
-  @media(max-width: 600px){ .roi-grid { grid-template-columns: 1fr; } }
-  .roi-card { background: rgba(212,175,55,0.06); border: 1px solid rgba(212,175,55,0.2); border-radius: 12px; padding: 24px 16px; }
-  .roi-num { font-size: 2.2rem; color: var(--gold); font-weight: bold; }
-  .roi-label { color: var(--gray); font-size: 0.85rem; margin-top: 6px; }
-
-  /* TIMELINE */
-  .timeline-section { background: var(--navy2); padding: 60px 20px; }
-  .timeline { max-width: 640px; margin: 0 auto; }
-  .tl-item { display: flex; gap: 20px; margin-bottom: 28px; }
-  .tl-dot { flex-shrink: 0; width: 36px; height: 36px; border-radius: 50%; background: rgba(212,175,55,0.15); border: 2px solid var(--gold); display: flex; align-items: center; justify-content: center; font-size: 0.8rem; color: var(--gold); font-weight: bold; }
-  .tl-content h4 { color: var(--gold); margin-bottom: 4px; font-size: 1rem; }
-  .tl-content p { color: var(--gray); font-size: 0.88rem; line-height: 1.6; }
-
-  /* CTA */
-  .cta-section { padding: 80px 20px; text-align: center; }
-  .cta-box { background: linear-gradient(135deg, rgba(212,175,55,0.12), rgba(212,175,55,0.04)); border: 2px solid var(--gold); border-radius: 20px; padding: 48px 32px; max-width: 580px; margin: 0 auto; }
-  .cta-box h2 { color: var(--gold); font-size: 1.8rem; margin-bottom: 12px; }
-  .cta-box p { color: var(--gray); margin-bottom: 28px; line-height: 1.7; }
-  .btn { display: inline-block; background: var(--gold); color: var(--navy); padding: 16px 36px; border-radius: 10px; text-decoration: none; font-size: 1.1rem; font-weight: bold; margin: 6px; transition: background 0.2s; }
-  .btn:hover { background: var(--gold-light); }
-  .btn-outline { background: transparent; border: 2px solid var(--gold); color: var(--gold); }
-  .btn-outline:hover { background: rgba(212,175,55,0.1); }
-
-  /* SITES */
-  .sites { display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; margin: 32px 0; }
-  .site-pill { background: rgba(212,175,55,0.1); border: 1px solid rgba(212,175,55,0.4); color: var(--gold); padding: 10px 20px; border-radius: 100px; font-size: 0.9rem; text-decoration: none; }
-
-  /* FOOTER */
-  footer { text-align: center; padding: 40px 20px; border-top: 1px solid rgba(255,255,255,0.08); color: var(--gray); font-size: 0.85rem; }
-  footer strong { color: var(--gold); }
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+--navy:#0d1621;--navy2:#1a2332;--gold:#d4a843;--cream:#f8f6f3;
+--gold-light:#e8c97a;--glass:rgba(255,255,255,0.05);
+--glass-border:rgba(212,168,67,0.15);--glass-strong:rgba(255,255,255,0.08);
+--green:#4ade80;
+}
+html{scroll-behavior:smooth}
+body{font-family:'Cormorant Garamond',Georgia,serif;color:#e0d8cc;background:var(--navy);overflow-x:hidden}
+.bg-particles{position:fixed;top:0;left:0;width:100%;height:100%;z-index:0;pointer-events:none}
+.particle{position:absolute;border-radius:50%;background:var(--gold);opacity:0;animation:float-particle linear infinite}
+@keyframes float-particle{0%{transform:translateY(100vh) scale(0);opacity:0}10%{opacity:0.6}90%{opacity:0.6}100%{transform:translateY(-10vh) scale(1);opacity:0}}
+.glass{background:var(--glass);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border:1px solid var(--glass-border);border-radius:24px}
+.glass-strong{background:var(--glass-strong);backdrop-filter:blur(30px);-webkit-backdrop-filter:blur(30px);border:1px solid rgba(212,168,67,0.25);border-radius:24px}
+.hero{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:2rem;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;width:600px;height:600px;border-radius:50%;background:radial-gradient(circle,rgba(212,168,67,0.12) 0%,transparent 70%);top:10%;left:50%;transform:translateX(-50%);animation:pulse-glow 4s ease-in-out infinite}
+.hero::after{content:'';position:absolute;width:400px;height:400px;border-radius:50%;background:radial-gradient(circle,rgba(30,87,153,0.15) 0%,transparent 70%);bottom:10%;right:10%;animation:pulse-glow 6s ease-in-out infinite reverse}
+@keyframes pulse-glow{0%,100%{opacity:0.5;transform:translateX(-50%) scale(1)}50%{opacity:1;transform:translateX(-50%) scale(1.2)}}
+.hero-badge{display:inline-block;padding:0.6rem 2rem;border:1px solid var(--gold);border-radius:50px;color:var(--gold);font-family:'Montserrat',sans-serif;font-size:0.7rem;letter-spacing:4px;text-transform:uppercase;margin-bottom:2rem;position:relative;z-index:1;animation:fadeInDown 1s ease;background:rgba(212,168,67,0.05)}
+.hero h1{font-family:'Cinzel',serif;color:white;font-size:clamp(2rem,5vw,4rem);font-weight:700;line-height:1.15;margin-bottom:1.5rem;position:relative;z-index:1;animation:fadeInUp 1s ease 0.2s both}
+.hero h1 .gold{background:linear-gradient(135deg,var(--gold),var(--gold-light));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.hero-sub{color:rgba(255,255,255,0.6);font-size:1.3rem;max-width:650px;position:relative;z-index:1;animation:fadeInUp 1s ease 0.4s both;line-height:1.6}
+.done-banner{display:inline-flex;align-items:center;gap:1rem;padding:1rem 2.5rem;background:rgba(74,222,128,0.08);border:1px solid rgba(74,222,128,0.25);border-radius:100px;margin-top:2rem;position:relative;z-index:1;animation:fadeInUp 1s ease 0.5s both}
+.done-banner-label{font-family:'Montserrat',sans-serif;font-size:0.65rem;letter-spacing:2px;text-transform:uppercase;color:var(--green)}
+.done-banner-amount{font-family:'Cinzel',serif;font-size:1.5rem;font-weight:700;color:var(--green)}
+.pricing-dual{display:flex;flex-wrap:wrap;gap:2rem;justify-content:center;margin-top:2.5rem;position:relative;z-index:1;animation:fadeInUp 1s ease 0.6s both}
+.price-card{padding:2.5rem 2.5rem;text-align:center;min-width:280px;max-width:340px;flex:1;position:relative;overflow:hidden}
+.price-card::before{content:'';position:absolute;top:-50%;left:-50%;width:200%;height:200%;background:conic-gradient(from 0deg,transparent,rgba(212,168,67,0.1),transparent,rgba(212,168,67,0.1));animation:rotate-border 8s linear infinite}
+@keyframes rotate-border{to{transform:rotate(360deg)}}
+.price-label{font-family:'Montserrat',sans-serif;font-size:0.7rem;letter-spacing:3px;text-transform:uppercase;color:var(--gold);margin-bottom:0.5rem;position:relative;z-index:1}
+.price-context{font-family:'Montserrat',sans-serif;font-size:0.8rem;color:rgba(255,255,255,0.4);margin-bottom:0.3rem;position:relative;z-index:1}
+.price-was{font-family:'Montserrat',sans-serif;font-size:1rem;color:rgba(255,255,255,0.35);text-decoration:line-through;margin-bottom:0.3rem;position:relative;z-index:1}
+.price-now{font-family:'Cinzel',serif;font-size:3rem;font-weight:700;background:linear-gradient(135deg,var(--gold),var(--gold-light),#fff,var(--gold));background-size:200% auto;-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;animation:shimmer 3s linear infinite;position:relative;z-index:1}
+@keyframes shimmer{to{background-position:200% center}}
+.price-period{font-family:'Montserrat',sans-serif;font-size:0.75rem;color:rgba(255,255,255,0.5);margin-top:0.3rem;position:relative;z-index:1}
+.price-breakdown{margin-top:1.2rem;position:relative;z-index:1;text-align:left}
+.breakdown-item{display:flex;justify-content:space-between;align-items:center;padding:0.5rem 0;border-bottom:1px solid rgba(255,255,255,0.05);font-family:'Montserrat',sans-serif;font-size:0.78rem}
+.breakdown-item:last-child{border-bottom:none}
+.breakdown-label{color:rgba(255,255,255,0.6)}
+.breakdown-price{color:var(--gold);font-weight:600}
+.price-total-line{display:flex;justify-content:space-between;align-items:center;margin-top:1rem;padding-top:0.8rem;border-top:1px solid rgba(212,168,67,0.3);font-family:'Montserrat',sans-serif;font-size:0.85rem;font-weight:700;position:relative;z-index:1}
+.price-total-line .total-label{color:white}
+.price-total-line .total-amount{color:var(--gold-light);font-family:'Cinzel',serif;font-size:1.1rem}
+.price-savings{display:inline-block;margin-top:1.2rem;padding:0.4rem 1.2rem;background:rgba(74,222,128,0.1);color:var(--green);font-family:'Montserrat',sans-serif;font-size:0.7rem;letter-spacing:1px;text-transform:uppercase;border-radius:20px;border:1px solid rgba(74,222,128,0.2);position:relative;z-index:1}
+.scroll-hint{position:absolute;bottom:2rem;left:50%;transform:translateX(-50%);color:var(--gold);opacity:0.5;animation:bounce 2s infinite;z-index:1;font-size:1.5rem}
+section{padding:5rem 1.5rem;position:relative;z-index:1}
+.container{max-width:1000px;margin:0 auto}
+.section-badge{display:inline-block;padding:0.4rem 1.5rem;background:linear-gradient(135deg,rgba(212,168,67,0.2),rgba(212,168,67,0.05));color:var(--gold);font-family:'Montserrat',sans-serif;font-size:0.65rem;letter-spacing:3px;text-transform:uppercase;border-radius:50px;margin-bottom:1rem;border:1px solid rgba(212,168,67,0.2)}
+.section-title{font-family:'Cinzel',serif;font-size:clamp(1.8rem,4vw,2.8rem);color:white;margin-bottom:0.5rem}
+.section-subtitle{font-size:1.15rem;color:rgba(255,255,255,0.5);margin-bottom:3rem;max-width:700px}
+.included-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.5rem;margin-bottom:2rem}
+.included-card{padding:2rem;transition:all 0.4s cubic-bezier(0.25,0.8,0.25,1);position:relative;overflow:hidden}
+.included-card:hover{transform:translateY(-4px);border-color:rgba(212,168,67,0.4);box-shadow:0 20px 40px rgba(212,168,67,0.1)}
+.included-card::before{content:'';position:absolute;top:0;left:0;width:100%;height:3px;background:linear-gradient(90deg,transparent,var(--gold),transparent);opacity:0;transition:opacity 0.4s}
+.included-card:hover::before{opacity:1}
+.card-icon{font-size:2.5rem;margin-bottom:1rem;display:block}
+.card-title{font-family:'Cinzel',serif;color:white;font-size:1.2rem;margin-bottom:0.5rem}
+.card-desc{color:rgba(255,255,255,0.5);font-size:0.95rem;line-height:1.6}
+.card-tag{display:inline-block;margin-top:1rem;padding:0.3rem 0.8rem;background:rgba(212,168,67,0.1);color:var(--gold);font-family:'Montserrat',sans-serif;font-size:0.65rem;letter-spacing:1px;text-transform:uppercase;border-radius:20px;border:1px solid rgba(212,168,67,0.2)}
+.value-table{width:100%;border-collapse:separate;border-spacing:0;overflow:hidden;border-radius:16px;border:1px solid var(--glass-border)}
+.value-table th{background:rgba(212,168,67,0.1);color:var(--gold);font-family:'Montserrat',sans-serif;font-size:0.75rem;letter-spacing:2px;text-transform:uppercase;padding:1.2rem 1.5rem;text-align:left;border-bottom:1px solid var(--glass-border)}
+.value-table td{padding:1rem 1.5rem;border-bottom:1px solid rgba(255,255,255,0.03);color:rgba(255,255,255,0.7);font-size:0.95rem}
+.value-table tr:last-child td{border-bottom:none}
+.value-table .total-row td{background:rgba(212,168,67,0.08);color:white;font-weight:600;font-family:'Montserrat',sans-serif}
+.value-table .saving-row td{background:rgba(74,222,128,0.06);color:var(--green);font-weight:600;font-family:'Montserrat',sans-serif}
+.value-table .done-row td{background:rgba(74,222,128,0.04);color:rgba(74,222,128,0.7)}
+.timeline{position:relative;padding-left:3rem}
+.timeline::before{content:'';position:absolute;left:0.75rem;top:0;bottom:0;width:2px;background:linear-gradient(180deg,var(--gold),rgba(212,168,67,0.1))}
+.timeline-item{position:relative;margin-bottom:2.5rem;animation:fadeInLeft 0.6s ease both}
+.timeline-dot{position:absolute;left:-2.35rem;top:0.5rem;width:14px;height:14px;border-radius:50%;background:var(--gold);box-shadow:0 0 20px rgba(212,168,67,0.4)}
+.timeline-dot::after{content:'';position:absolute;inset:-4px;border-radius:50%;border:2px solid rgba(212,168,67,0.3);animation:pulse-ring 2s infinite}
+@keyframes pulse-ring{0%{transform:scale(1);opacity:1}100%{transform:scale(2);opacity:0}}
+.timeline-dot.done{background:var(--green);box-shadow:0 0 20px rgba(74,222,128,0.4)}
+.timeline-title{font-family:'Cinzel',serif;color:white;font-size:1.1rem;margin-bottom:0.3rem}
+.timeline-desc{color:rgba(255,255,255,0.5);font-size:0.95rem;line-height:1.6}
+.timeline-tag{display:inline-block;margin-top:0.5rem;padding:0.2rem 0.6rem;background:rgba(212,168,67,0.1);color:var(--gold);font-family:'Montserrat',sans-serif;font-size:0.6rem;letter-spacing:1px;text-transform:uppercase;border-radius:12px}
+.timeline-tag.done{background:rgba(74,222,128,0.1);color:var(--green)}
+.platforms{display:flex;flex-wrap:wrap;justify-content:center;gap:1.5rem;margin:2rem 0}
+.platform-card{padding:1.5rem 2rem;text-align:center;min-width:140px;transition:all 0.3s}
+.platform-card:hover{transform:scale(1.05);border-color:rgba(212,168,67,0.3)}
+.platform-icon{font-size:2rem;margin-bottom:0.5rem}
+.platform-name{font-family:'Montserrat',sans-serif;color:white;font-size:0.85rem;font-weight:600}
+.platform-handle{color:var(--gold);font-size:0.75rem;font-family:'Montserrat',sans-serif}
+.platform-status{margin-top:0.5rem;font-size:0.65rem;font-family:'Montserrat',sans-serif;letter-spacing:1px;text-transform:uppercase}
+.status-done{color:#4ade80}
+.status-ready{color:var(--gold)}
+.bank-box{padding:2.5rem;margin-top:2rem;text-align:center}
+.bank-title{font-family:'Cinzel',serif;color:white;font-size:1.3rem;margin-bottom:1.5rem}
+.bank-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:1rem;text-align:center}
+.bank-item{padding:1rem}
+.bank-label{font-family:'Montserrat',sans-serif;font-size:0.65rem;letter-spacing:2px;text-transform:uppercase;color:var(--gold);margin-bottom:0.3rem}
+.bank-value{font-family:'Cinzel',serif;color:white;font-size:1.3rem;font-weight:600}
+.cta-section{text-align:center;padding:6rem 2rem}
+.cta-box{display:inline-block;padding:3rem 4rem;position:relative;overflow:hidden;max-width:600px}
+.cta-box::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(212,168,67,0.1),transparent);border-radius:24px}
+.cta-title{font-family:'Cinzel',serif;color:white;font-size:clamp(1.5rem,3vw,2.2rem);margin-bottom:1rem;position:relative;z-index:1}
+.cta-btn{display:inline-block;padding:1rem 3rem;background:linear-gradient(135deg,var(--gold),var(--gold-light));color:var(--navy);font-family:'Montserrat',sans-serif;font-weight:700;font-size:1rem;letter-spacing:2px;text-transform:uppercase;text-decoration:none;border-radius:50px;transition:all 0.3s;position:relative;z-index:1;box-shadow:0 10px 30px rgba(212,168,67,0.3);margin:0.5rem}
+.cta-btn:hover{transform:translateY(-2px);box-shadow:0 15px 40px rgba(212,168,67,0.4)}
+.cta-btn-outline{display:inline-block;padding:1rem 3rem;background:transparent;color:var(--gold);font-family:'Montserrat',sans-serif;font-weight:600;font-size:0.9rem;letter-spacing:2px;text-transform:uppercase;text-decoration:none;border-radius:50px;transition:all 0.3s;position:relative;z-index:1;border:2px solid var(--gold);margin:0.5rem}
+.cta-btn-outline:hover{background:rgba(212,168,67,0.1);transform:translateY(-2px)}
+.cta-note{color:rgba(255,255,255,0.4);font-family:'Montserrat',sans-serif;font-size:0.75rem;margin-top:1.5rem;position:relative;z-index:1}
+footer{text-align:center;padding:3rem 2rem;border-top:1px solid rgba(212,168,67,0.1)}
+footer p{color:rgba(255,255,255,0.3);font-family:'Montserrat',sans-serif;font-size:0.75rem}
+@keyframes fadeInUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}
+@keyframes fadeInDown{from{opacity:0;transform:translateY(-20px)}to{opacity:1;transform:translateY(0)}}
+@keyframes fadeInLeft{from{opacity:0;transform:translateX(-20px)}to{opacity:1;transform:translateX(0)}}
+@keyframes bounce{0%,100%{transform:translateX(-50%) translateY(0)}50%{transform:translateX(-50%) translateY(-10px)}}
+.reveal{opacity:0;transform:translateY(40px);transition:all 0.8s cubic-bezier(0.25,0.8,0.25,1)}
+.reveal.visible{opacity:1;transform:translateY(0)}
+@media(max-width:768px){
+.hero h1{font-size:2rem}.price-now{font-size:2.2rem}
+.pricing-dual{flex-direction:column;align-items:center}
+.price-card{min-width:auto;width:100%;max-width:350px}
+.cta-box{padding:2rem 1.5rem}.included-grid{grid-template-columns:1fr}
+.done-banner{flex-direction:column;gap:0.3rem;padding:1rem 1.5rem}
+.bank-grid{grid-template-columns:1fr}
+}
 </style>
 </head>
 <body>
+<div class="bg-particles" id="particles"></div>
 
-<div class="hero">
-  <div class="badge">📋 Proposition Commerciale V4 — 2026</div>
-  <h1>Breslev by Esther Ifrah</h1>
-  <p>Votre librairie en ligne complète — livres de Rabbi Nachman de Breslev en français.<br>Créée par <strong style="color:var(--gold)">DreamNova AI</strong></p>
-  <div class="divider"></div>
-  <p style="font-size:0.9rem; color:var(--gold)">Na Nach Nachma Nachman MeUman</p>
+<!-- HERO -->
+<section class="hero">
+<div class="hero-badge">Proposition Commerciale — Février 2026</div>
+<h1>Package Digital<br><span class="gold">Breslev by Esther</span></h1>
+<p class="hero-sub">Votre boutique est déjà live. Voici les deux prochaines étapes pour aller encore plus loin.</p>
+
+<div class="done-banner">
+  <span style="font-size:1.5rem">✅</span>
+  <div>
+    <div class="done-banner-label">Site web complet — Déjà livré &amp; payé</div>
+    <div class="done-banner-amount">4 000 ₪ <span style="font-size:0.9rem;color:rgba(74,222,128,0.6)">acquis</span></div>
+  </div>
 </div>
 
-<!-- CE QUI A ÉTÉ LIVRÉ -->
-<section class="section" style="background:var(--navy);">
-  <div class="container">
-    <h2 class="section-title">Ce qui a été livré</h2>
-    <p class="section-sub">Plateforme e-commerce complète — prête pour la production</p>
-
-    <div class="deliverables">
-      <div class="deliv-card">
-        <div class="deliv-icon">🌐</div>
-        <h3>Site E-Commerce Live</h3>
-        <ul>
-          <li>37 livres Breslev en catalogue</li>
-          <li>Design crème/or approuvé</li>
-          <li>Vidéo d'intro page d'accueil</li>
-          <li>Lecteur FlipHTML5 intégré</li>
-          <li>Mobile-first responsive</li>
-        </ul>
-      </div>
-      <div class="deliv-card">
-        <div class="deliv-icon">💳</div>
-        <h3>Paiements Complets</h3>
-        <ul>
-          <li>Stripe (cartes) — Live mode</li>
-          <li>PayPal intégré</li>
-          <li>Abonnements mensuels/annuels</li>
-          <li>Gestion commandes Supabase</li>
-          <li>Webhooks automatiques</li>
-        </ul>
-      </div>
-      <div class="deliv-card">
-        <div class="deliv-icon">📱</div>
-        <h3>Réseaux Sociaux</h3>
-        <ul>
-          <li>Facebook @BreslevEsther ✅</li>
-          <li>Instagram @breslevbyesther ✅</li>
-          <li>TikTok @estherifrah572 ✅</li>
-          <li>YouTube @BreslevEsther ✅</li>
-          <li>Photos profil + bannières</li>
-        </ul>
-      </div>
-      <div class="deliv-card">
-        <div class="deliv-icon">🔒</div>
-        <h3>Backend & Sécurité</h3>
-        <ul>
-          <li>Supabase (base de données)</li>
-          <li>Auth email/password</li>
-          <li>Protection DRM (LemonInk)</li>
-          <li>Admin dashboard</li>
-          <li>HTTPS + headers sécurité</li>
-        </ul>
-      </div>
-      <div class="deliv-card">
-        <div class="deliv-icon">🎨</div>
-        <h3>Identité Visuelle</h3>
-        <ul>
-          <li>Palette crème/or/marine</li>
-          <li>Photo profil générée (IA)</li>
-          <li>Bannière Facebook générée</li>
-          <li>Kit hashtags 12 tags</li>
-          <li>Guide utilisation complet</li>
-        </ul>
-      </div>
-      <div class="deliv-card">
-        <div class="deliv-icon">📋</div>
-        <h3>Documentation Fournie</h3>
-        <ul>
-          <li>Page d'accès complète (HTML)</li>
-          <li>Guide réseaux sociaux</li>
-          <li>Prompts Gemini Flow</li>
-          <li>Roadmap 6 mois</li>
-          <li>Support WhatsApp continu</li>
-        </ul>
-      </div>
+<div class="pricing-dual">
+<div class="glass-strong price-card">
+  <div class="price-label">Compléments — Paiement unique</div>
+  <div class="price-context">Module vidéo + mise en place réseaux</div>
+  <div class="price-was">5 000 ₪ (prix marché)</div>
+  <div class="price-now">2 500 ₪</div>
+  <div class="price-period">À régler en une fois</div>
+  <div class="price-breakdown">
+    <div class="breakdown-item">
+      <span class="breakdown-label">📹 Module upload vidéos quotidiennes</span>
+      <span class="breakdown-price">1 000 ₪</span>
     </div>
-
-    <div class="sites" style="margin-top:40px;">
-      <a href="https://breslev-esther.vercel.app" target="_blank" class="site-pill">🔗 Site Principal (Live)</a>
-      <a href="https://codenolimits.github.io/esther-ifrah-acces/" target="_blank" class="site-pill">📄 Page Accès Complet</a>
+    <div class="breakdown-item">
+      <span class="breakdown-label">📱 Mise en place réseaux sociaux</span>
+      <span class="breakdown-price">1 500 ₪</span>
+    </div>
+    <div class="price-total-line">
+      <span class="total-label">Total</span>
+      <span class="total-amount">2 500 ₪</span>
     </div>
   </div>
+  <div class="price-savings">Économie : 2 500 ₪ vs marché</div>
+</div>
+
+<div class="glass-strong price-card">
+  <div class="price-label">Accompagnement mensuel</div>
+  <div class="price-context">Maintenance + gestion réseaux sociaux</div>
+  <div class="price-was">3 000 ₪/mois (prix agence)</div>
+  <div class="price-now">2 000 ₪</div>
+  <div class="price-period">Par mois</div>
+  <div class="price-breakdown">
+    <div class="breakdown-item">
+      <span class="breakdown-label">🔧 Maintenance du site</span>
+      <span class="breakdown-price">500 ₪</span>
+    </div>
+    <div class="breakdown-item">
+      <span class="breakdown-label">📲 Gestion réseaux sociaux</span>
+      <span class="breakdown-price">1 500 ₪</span>
+    </div>
+    <div class="price-total-line">
+      <span class="total-label">Total / mois</span>
+      <span class="total-amount">2 000 ₪</span>
+    </div>
+  </div>
+  <div class="price-savings">Économie : 1 000 ₪/mois vs agence</div>
+</div>
+</div>
+<div class="scroll-hint">↓</div>
 </section>
 
-<!-- TARIFICATION -->
-<section class="pricing-section">
-  <div class="container">
-    <h2 class="section-title">Investissement</h2>
-    <p class="section-sub">Tarification transparente — engagement mensuel sans surprise</p>
-
-    <div class="pricing-grid">
-      <div class="price-card">
-        <div class="price-label">Création complète</div>
-        <div class="price-amount"><span class="price-currency">₪</span>2,500</div>
-        <div class="price-period">paiement unique</div>
-        <ul class="price-includes">
-          <li>Site e-commerce complet</li>
-          <li>37 livres configurés</li>
-          <li>Stripe + PayPal</li>
-          <li>4 réseaux sociaux créés</li>
-          <li>Identité visuelle complète</li>
-          <li>Formation utilisation</li>
-          <li>Déploiement Vercel</li>
-        </ul>
-        <div class="price-total">Valeur marché estimée : <strong>₪6,000–8,000</strong></div>
-      </div>
-
-      <div class="price-card featured">
-        <div class="tag">⭐ RECOMMANDÉ</div>
-        <div class="price-label">Maintenance mensuelle</div>
-        <div class="price-amount"><span class="price-currency">₪</span>2,000</div>
-        <div class="price-period">par mois</div>
-        <ul class="price-includes">
-          <li>Mises à jour produits</li>
-          <li>Ajout nouveaux livres</li>
-          <li>Gestion réseaux sociaux</li>
-          <li>10 publications/mois</li>
-          <li>Support prioritaire 48h</li>
-          <li>Rapports mensuels</li>
-          <li>Optimisations SEO</li>
-        </ul>
-        <div class="price-total">ROI objectif : <strong>₪10,000+/mois</strong></div>
-      </div>
-    </div>
-
-    <!-- TOTAL YEAR 1 -->
-    <div style="max-width:760px; margin:32px auto 0; background:rgba(212,175,55,0.06); border:1px solid rgba(212,175,55,0.3); border-radius:12px; padding:24px; text-align:center;">
-      <div style="color:var(--gray); font-size:0.9rem; margin-bottom:8px;">Investissement total Année 1</div>
-      <div style="color:var(--gold); font-size:2rem; font-weight:bold;">₪26,500</div>
-      <div style="color:var(--gray); font-size:0.85rem; margin-top:8px;">(₪2,500 création + ₪2,000 × 12 mois = ₪24,000 maintenance)</div>
-    </div>
-  </div>
+<!-- DÉTAIL 2 500₪ -->
+<section>
+<div class="container">
+<div class="section-badge">Paiement unique</div>
+<h2 class="section-title reveal">2 500 ₪ — Ce que vous obtenez</h2>
+<p class="section-subtitle reveal">Deux modules complémentaires au site déjà livré.</p>
+<div class="included-grid">
+<div class="glass included-card reveal">
+  <span class="card-icon">🎬</span>
+  <h3 class="card-title">Module Upload Vidéos</h3>
+  <p class="card-desc">Interface admin sécurisée pour uploader vous-même vos cours vidéo, audio et PDF chaque jour. Aucune dépendance technique. Formats : MP4, MP3, PDF jusqu'à 50 Mo. Gestion complète de votre contenu.</p>
+  <span class="card-tag">1 000 ₪ — Autonomie totale</span>
+</div>
+<div class="glass included-card reveal">
+  <span class="card-icon">📱</span>
+  <h3 class="card-title">Mise en Place Réseaux</h3>
+  <p class="card-desc">Configuration complète de vos 4 plateformes : YouTube, Instagram, TikTok, Facebook. Photos de profil, bannières, bios optimisées, identité visuelle cohérente. Stratégie 12 mois incluse. Prêt à publier.</p>
+  <span class="card-tag">1 500 ₪ — 4 plateformes</span>
+</div>
+</div>
+</div>
 </section>
 
-<!-- ROI -->
-<section class="roi-section">
-  <div class="container">
-    <h2 class="section-title">Objectifs de Retour</h2>
-    <p class="section-sub">Chiffres réalistes basés sur le marché des livres Breslev francophones</p>
-    <div class="roi-grid">
-      <div class="roi-card">
-        <div class="roi-num">15–20</div>
-        <div class="roi-label">ventes/mois objectif M3</div>
-      </div>
-      <div class="roi-card">
-        <div class="roi-num">₪120</div>
-        <div class="roi-label">panier moyen estimé</div>
-      </div>
-      <div class="roi-card">
-        <div class="roi-num">₪1,800+</div>
-        <div class="roi-label">revenus mois 3</div>
-      </div>
+<!-- DÉTAIL MENSUEL -->
+<section style="padding-top:0">
+<div class="container">
+<div class="section-badge">Abonnement mensuel</div>
+<h2 class="section-title reveal">2 000 ₪/mois — Ce qui est couvert</h2>
+<p class="section-subtitle reveal">Un partenariat continu : vous publiez, je crée et je maintiens.</p>
+<div class="included-grid">
+<div class="glass included-card reveal">
+  <span class="card-icon">🔧</span>
+  <h3 class="card-title">Maintenance Technique</h3>
+  <p class="card-desc">Suivi du site, mises à jour, correction de bugs, monitoring des paiements Stripe. Votre boutique reste en ligne et fonctionnelle à 100% sans que vous ayez à vous en occuper.</p>
+  <span class="card-tag">500 ₪/mois</span>
+</div>
+<div class="glass included-card reveal">
+  <span class="card-icon">✨</span>
+  <h3 class="card-title">Gestion Réseaux Sociaux</h3>
+  <p class="card-desc">Création de contenu hebdomadaire pour vos 4 plateformes : posts, stories, reels, thumbnails YouTube. Planning éditorial, hashtags optimisés, visuels Breslev personnalisés.</p>
+  <span class="card-tag">1 500 ₪/mois</span>
+</div>
+</div>
+<div class="glass-strong reveal" style="padding:2rem;text-align:center;margin-top:0.5rem">
+  <div style="font-family:'Montserrat',sans-serif;font-size:0.7rem;letter-spacing:2px;text-transform:uppercase;color:var(--gold);margin-bottom:1rem">Récapitulatif mensuel</div>
+  <div style="display:flex;gap:2rem;justify-content:center;flex-wrap:wrap;align-items:center">
+    <div>
+      <div style="font-family:'Montserrat',sans-serif;font-size:0.7rem;color:rgba(255,255,255,0.4)">Maintenance</div>
+      <div style="font-family:'Cinzel',serif;font-size:1.8rem;color:white">500 ₪</div>
+      <div style="font-family:'Montserrat',sans-serif;font-size:0.6rem;color:rgba(255,255,255,0.3);text-decoration:line-through">Marché : 1 000 ₪</div>
+    </div>
+    <div style="color:rgba(212,168,67,0.4);font-size:1.5rem">+</div>
+    <div>
+      <div style="font-family:'Montserrat',sans-serif;font-size:0.7rem;color:rgba(255,255,255,0.4)">Réseaux sociaux</div>
+      <div style="font-family:'Cinzel',serif;font-size:1.8rem;color:white">1 500 ₪</div>
+      <div style="font-family:'Montserrat',sans-serif;font-size:0.6rem;color:rgba(255,255,255,0.3);text-decoration:line-through">Marché : 2 000 ₪</div>
+    </div>
+    <div style="color:rgba(212,168,67,0.4);font-size:1.5rem">=</div>
+    <div>
+      <div style="font-family:'Montserrat',sans-serif;font-size:0.7rem;color:rgba(255,255,255,0.4)">Total mensuel</div>
+      <div style="font-family:'Cinzel',serif;font-size:2.2rem;background:linear-gradient(135deg,var(--gold),var(--gold-light));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;font-weight:700">2 000 ₪</div>
+      <div style="font-family:'Montserrat',sans-serif;font-size:0.65rem;color:var(--green)">Économie : 1 000 ₪/mois</div>
     </div>
   </div>
+</div>
+</div>
+</section>
+
+<!-- TABLEAU RÉCAP -->
+<section>
+<div class="container">
+<div class="section-badge">Vue d'ensemble</div>
+<h2 class="section-title reveal">Tout votre investissement</h2>
+<p class="section-subtitle reveal">Ce qui a été fait, ce qui reste, en un coup d'œil.</p>
+<div class="glass-strong reveal" style="overflow:hidden;border-radius:16px">
+<table class="value-table">
+<thead><tr><th>Élément</th><th>Prix marché</th><th>Votre prix</th></tr></thead>
+<tbody>
+<tr class="done-row">
+  <td>✅ Site web complet (Express + Supabase + Stripe + PayPal + Google Auth)</td>
+  <td>5 000 — 10 000 ₪</td>
+  <td style="color:var(--green);font-weight:600">4 000 ₪ <small style="opacity:0.6">(payé ✓)</small></td>
+</tr>
+<tr>
+  <td>📹 Module upload vidéos quotidiennes (interface admin)</td>
+  <td>1 500 — 2 000 ₪</td>
+  <td rowspan="2" style="vertical-align:middle;text-align:center;color:var(--gold);font-family:'Cinzel',serif;font-size:1.5rem;font-weight:700;border-left:1px solid var(--glass-border)">2 500 ₪</td>
+</tr>
+<tr>
+  <td>📱 Mise en place 4 réseaux sociaux + stratégie 12 mois</td>
+  <td>1 500 — 3 000 ₪</td>
+</tr>
+<tr class="total-row">
+  <td><strong>Total investissement unique</strong></td>
+  <td><strong>8 000 — 15 000 ₪</strong></td>
+  <td style="text-align:center;color:var(--gold);font-family:'Cinzel',serif;font-size:1.2rem"><strong>6 500 ₪</strong></td>
+</tr>
+<tr>
+  <td>🔧 Maintenance mensuelle site</td>
+  <td>1 000 ₪/mois</td>
+  <td rowspan="2" style="vertical-align:middle;text-align:center;color:var(--gold);font-family:'Cinzel',serif;font-size:1.5rem;font-weight:700;border-left:1px solid var(--glass-border)">2 000 ₪/mois</td>
+</tr>
+<tr>
+  <td>📲 Gestion réseaux sociaux (contenu + stratégie)</td>
+  <td>2 000 ₪/mois</td>
+</tr>
+<tr class="saving-row">
+  <td colspan="2"><strong>Économie mensuelle vs agence</strong></td>
+  <td style="text-align:center"><strong>1 000 ₪/mois</strong></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 </section>
 
 <!-- TIMELINE -->
-<section class="timeline-section">
-  <div class="container">
-    <h2 class="section-title">Roadmap de Lancement</h2>
-    <p class="section-sub">6 mois pour une présence solide et rentable</p>
-    <div class="timeline">
-      <div class="tl-item">
-        <div class="tl-dot">M1</div>
-        <div class="tl-content">
-          <h4>Lancement & Présence de Base</h4>
-          <p>Site live, 1er post sur chaque plateforme, 100 abonnés Instagram, 50 abonnés YouTube, premières ventes directes WhatsApp</p>
-        </div>
-      </div>
-      <div class="tl-item">
-        <div class="tl-dot">M2</div>
-        <div class="tl-content">
-          <h4>Croissance Organique</h4>
-          <p>10 publications/mois, Reels TikTok/Instagram, 500 abonnés total, premiers revenus récurrents, abonnements mensuels activés</p>
-        </div>
-      </div>
-      <div class="tl-item">
-        <div class="tl-dot">M3</div>
-        <div class="tl-content">
-          <h4>Optimisation & SEO</h4>
-          <p>Référencement Google "livres Breslev français", 1,000 abonnés total, 15–20 ventes/mois, première campagne publicité ciblée</p>
-        </div>
-      </div>
-      <div class="tl-item">
-        <div class="tl-dot">M4</div>
-        <div class="tl-content">
-          <h4>Communauté</h4>
-          <p>Groupe WhatsApp communauté lecteurs, newsletter mensuelle, fidélisation abonnés, témoignages clients visibles sur le site</p>
-        </div>
-      </div>
-      <div class="tl-item">
-        <div class="tl-dot">M5</div>
-        <div class="tl-content">
-          <h4>Expansion</h4>
-          <p>Cours audio/vidéo sur le site, contenu exclusif abonnés, partenariats communauté Breslev francophone mondiale</p>
-        </div>
-      </div>
-      <div class="tl-item">
-        <div class="tl-dot">M6</div>
-        <div class="tl-content">
-          <h4>Rentabilité Confirmée</h4>
-          <p>₪5,000–10,000/mois estimé, ROI positif sur investissement total, automatisation maximale du marketing</p>
-        </div>
-      </div>
-    </div>
+<section>
+<div class="container">
+<div class="section-badge">Travail réalisé</div>
+<h2 class="section-title reveal">Ce qui a déjà été fait</h2>
+<p class="section-subtitle reveal">Le site est déjà en production. Voici le détail complet.</p>
+<div class="timeline reveal">
+  <div class="timeline-item">
+    <div class="timeline-dot done"></div>
+    <h3 class="timeline-title">Site E-commerce Complet ✅</h3>
+    <p class="timeline-desc">Boutique Node.js/Express avec Supabase, Stripe production, PayPal, Google Auth. Catalogue livres Breslev, panier, checkout sécurisé. Design premium navy & or. Responsive mobile. Déployé sur Vercel.</p>
+    <span class="timeline-tag done">4 000 ₪ — Payé ✓</span>
   </div>
+  <div class="timeline-item">
+    <div class="timeline-dot done"></div>
+    <h3 class="timeline-title">Design & Identité Visuelle ✅</h3>
+    <p class="timeline-desc">Charte graphique navy #0d1621 / or #d4a843. Typographie Cinzel. CSS premium sur mesure. Photos de profil réseaux sociaux, kit créatif 30+ prompts Gemini/ImageFX, 4 scripts vidéo TikTok.</p>
+    <span class="timeline-tag done">Inclus — Payé ✓</span>
+  </div>
+  <div class="timeline-item">
+    <div class="timeline-dot"></div>
+    <h3 class="timeline-title">Module Upload Vidéos — Prochaine étape</h3>
+    <p class="timeline-desc">Interface admin sécurisée pour uploader chaque jour vos cours. MP4, MP3, PDF jusqu'à 50 Mo. Vous êtes 100% autonome dès la livraison.</p>
+    <span class="timeline-tag">1 000 ₪ — inclus dans les 2 500 ₪</span>
+  </div>
+  <div class="timeline-item">
+    <div class="timeline-dot"></div>
+    <h3 class="timeline-title">Réseaux Sociaux — Prochaine étape</h3>
+    <p class="timeline-desc">YouTube @BreslevEsther, Instagram @breslevbyesther, TikTok @estherifrah572, Facebook. Tous configurés, photos uploadées, bios optimisées. Stratégie 12 mois + calendrier contenu livré.</p>
+    <span class="timeline-tag">1 500 ₪ — inclus dans les 2 500 ₪</span>
+  </div>
+</div>
+</div>
 </section>
 
-<!-- CTA -->
+<!-- PLATFORMS -->
+<section>
+<div class="container" style="text-align:center">
+<div class="section-badge">Réseaux sociaux</div>
+<h2 class="section-title reveal">Vos 4 plateformes</h2>
+<div class="platforms">
+<div class="glass platform-card reveal"><div class="platform-icon">▶️</div><div class="platform-name">YouTube</div><div class="platform-handle">@BreslevEsther</div><div class="platform-status status-done">● Configuré</div></div>
+<div class="glass platform-card reveal"><div class="platform-icon">📸</div><div class="platform-name">Instagram</div><div class="platform-handle">@breslevbyesther</div><div class="platform-status status-done">● Configuré</div></div>
+<div class="glass platform-card reveal"><div class="platform-icon">🎵</div><div class="platform-name">TikTok</div><div class="platform-handle">@estherifrah572</div><div class="platform-status status-ready">● Prêt</div></div>
+<div class="glass platform-card reveal"><div class="platform-icon">👥</div><div class="platform-name">Facebook</div><div class="platform-handle">Breslev by Esther Ifrah</div><div class="platform-status status-ready">● Prêt</div></div>
+</div>
+</div>
+</section>
+
+<!-- CTA + BANK -->
 <section class="cta-section">
-  <div class="cta-box">
-    <h2>Prêt à démarrer ?</h2>
-    <p>Votre boutique Breslev est déjà en ligne. Il ne reste plus qu'à la faire grandir ensemble.</p>
-    <a href="https://wa.me/972584770877" class="btn">📱 Contacter David sur WhatsApp</a>
-    <a href="https://breslev-esther.vercel.app" target="_blank" class="btn btn-outline">🌐 Voir le Site</a>
+<div class="glass-strong cta-box reveal">
+  <h2 class="cta-title">Prête pour la suite ?</h2>
+  <p style="color:rgba(255,255,255,0.5);margin-bottom:2rem;font-size:1.05rem;position:relative;z-index:1;line-height:1.7">
+    Le site est live. Il reste 2 500 ₪ pour le module vidéo et les réseaux. Ensuite 2 000 ₪/mois pour que tout tourne sans effort de votre part.
+  </p>
+  <a href="https://wa.me/972584921492?text=Bonjour%20David%20!%20Je%20suis%20prête%20à%20valider%20les%202%20500%20₪%20🕎" class="cta-btn">Valider les 2 500 ₪</a>
+  <a href="https://wa.me/972584921492?text=Bonjour%20David%20!%20J'ai%20une%20question%20sur%20la%20proposition" class="cta-btn-outline">Une question ?</a>
+  <p class="cta-note" style="margin-top:2rem">Na Nach Nachma Nachman MeUman 🕎</p>
+</div>
+<div class="container" style="margin-top:3rem">
+<div class="glass-strong bank-box reveal">
+  <div class="bank-title">Virement bancaire — David Amor</div>
+  <div class="bank-grid">
+    <div class="bank-item"><div class="bank-label">Banque</div><div class="bank-value">Yerushalayim</div><div style="font-family:'Montserrat',sans-serif;font-size:0.7rem;color:rgba(255,255,255,0.4);margin-top:0.2rem">Code : 054</div></div>
+    <div class="bank-item"><div class="bank-label">Succursale</div><div class="bank-value">051</div></div>
+    <div class="bank-item"><div class="bank-label">N° de compte</div><div class="bank-value">502718</div></div>
+    <div class="bank-item"><div class="bank-label">Bénéficiaire</div><div class="bank-value">David Amor</div></div>
   </div>
+  <p style="color:rgba(255,255,255,0.3);font-family:'Montserrat',sans-serif;font-size:0.7rem;margin-top:1.5rem">Référence : « Breslev Digital »</p>
+</div>
+</div>
 </section>
 
 <footer>
-  <p>Proposition créée par <strong>DreamNova AI</strong> — David Amor, Jérusalem 2026</p>
-  <p style="margin-top:8px;">+972 58-477-0877 | dreamnovaultimate@gmail.com</p>
-  <p style="margin-top:12px; color:#444;">Na Nach Nachma Nachman MeUman</p>
+<p>Package Digital Premium — Breslev by Esther Ifrah — DreamNova Consulting</p>
+<p style="margin-top:0.5rem;color:rgba(212,168,67,0.3)">Février 2026 • Jérusalem • David Amor — 058-492-1492</p>
 </footer>
 
+<script>
+const container=document.getElementById('particles');
+for(let i=0;i<30;i++){const p=document.createElement('div');p.className='particle';p.style.cssText=`left:${Math.random()*100}%;width:${Math.random()*3+1}px;height:${Math.random()*3+1}px;animation-duration:${Math.random()*15+10}s;animation-delay:${Math.random()*10}s`;container.appendChild(p);}
+const observer=new IntersectionObserver((entries)=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');observer.unobserve(e.target)}})},{threshold:0.1});
+document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
+document.querySelectorAll('.included-card').forEach((card,i)=>{card.style.transitionDelay=`${i*0.1}s`});
+</script>
 </body>
 </html>
